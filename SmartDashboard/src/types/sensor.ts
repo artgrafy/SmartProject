@@ -12,6 +12,8 @@ export interface SensorData {
     resistance: number;
     noise: number;
     timestamp: number;
+    calculatedBPM?: number;
+    stressIndex?: number;
 }
 
 export interface DeviceInfo {

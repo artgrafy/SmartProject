@@ -386,7 +386,7 @@ void loop() {
     Serial.print(",");
     Serial.print(iAngleZ);
     Serial.print(", 호흡: ");
-    Serial.print(iBreathRate);
+    Serial.print(currentBreathRate);
     Serial.print(", 소음: ");
     Serial.println(iNoise);
 

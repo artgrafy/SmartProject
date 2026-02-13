@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { SensorData, DeviceInfo } from '@/types/sensor';
 import { calculateBPM, calculateStressIndex } from '@/utils/analysis';
+import { db } from '@/db/sensorDataDB';
 
 interface DashboardStore {
     latestData: SensorData | null;
@@ -32,13 +33,20 @@ export const useDashboardStore = create<DashboardStore>((set) => ({
             // 실시간 분석 엔진 가동
             const newBPM = calculateBPM(newHistory);
             const newStress = calculateStressIndex(newHistory);
+            const finalBPM = newBPM !== -1 ? newBPM : state.calculatedBPM;
+
+            // IndexedDB에 실시간 데이터 영구 저장 (비동기)
+            db.sensorLogs.add({
+                ...data,
+                calculatedBPM: finalBPM,
+                stressIndex: newStress
+            }).catch(err => console.error("데이터베이스 저장 에러:", err));
 
             return {
                 latestData: data,
                 history: newHistory,
                 device: { ...state.device, lastUpdate: Date.now() },
-                // 새로운 호흡 정점(Peak)이 발견되었을 때만 BPM 수치를 업데이트하여 화면 떨림 방지
-                calculatedBPM: newBPM !== -1 ? newBPM : state.calculatedBPM,
+                calculatedBPM: finalBPM,
                 stressIndex: newStress
             };
         }),
