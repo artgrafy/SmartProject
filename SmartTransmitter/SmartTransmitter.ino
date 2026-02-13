@@ -1,6 +1,6 @@
 /*
   스마트 안전관리 웨어러블 디바이스 온보드 펌웨어
-  BLE BroadCasting Transmitter Ver 2.3
+  BLE BroadCasting Transmitter Ver 2.5 (AI Raw Data Optimized)
 */
 
 #include <ArduinoBLE.h>
