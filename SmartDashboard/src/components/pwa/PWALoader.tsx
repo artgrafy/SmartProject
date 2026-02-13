@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export default function PWALoader() {
     useEffect(() => {
-        if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+        if (typeof window !== "undefined" && "serviceWorker" in navigator && process.env.NODE_ENV !== "development") {
             // 컴포넌트 마운트 시 즉시 서비스 워커 등록 시도 (v2.0.4)
             navigator.serviceWorker
                 .register("/sw.js")
