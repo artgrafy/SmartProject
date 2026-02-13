@@ -24,12 +24,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#10b981",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
 };
+
+import PWALoader from "@/components/pwa/PWALoader";
 
 export default function RootLayout({
   children,
@@ -39,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="ko" data-theme="night" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
+        <PWALoader />
         {children}
       </body>
     </html>

@@ -1,21 +1,31 @@
 {
-    "name": "SmartDashboard",
+    "name": "Smart Dashboard",
     "short_name": "SmartDash",
-    "description": "Smart Device Real-time Monitoring Dashboard",
+    "description": "스트레스 관리 웨어러블 시스템",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#000000",
-    "theme_color": "#000000",
+    "background_color": "#0f172a",
+    "theme_color": "#10b981",
+    "orientation": "portrait",
+    "scope": "/",
     "icons": [
         {
             "src": "/icons/icon-192x192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
         },
         {
             "src": "/icons/icon-512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         }
     ]
 }

@@ -20,7 +20,7 @@ import packageJson from "../../package.json";
 
 export default function Home() {
   const { latestData, history, device, calculatedBPM, stressIndex } = useDashboardStore();
-  const { connect, disconnect } = useBluetooth();
+  const { connect, disconnect, startDemo } = useBluetooth();
   const version = packageJson.version;
 
   return (
@@ -42,13 +42,23 @@ export default function Home() {
             </div>
           </div>
 
-          <button
-            onClick={device.connected ? disconnect : connect}
-            className={`btn btn-sm ${device.connected ? 'btn-error btn-outline' : 'btn-primary'} gap-2 rounded-full`}
-          >
-            {device.connected ? <BluetoothOff size={16} /> : <Bluetooth size={16} />}
-            {device.connected ? 'Disconnect' : 'Connect Device'}
-          </button>
+          <div className="flex gap-2">
+            {!device.connected && (
+              <button
+                onClick={startDemo}
+                className="btn btn-sm btn-ghost gap-2 rounded-full hidden sm:flex"
+              >
+                Demo Run
+              </button>
+            )}
+            <button
+              onClick={device.connected ? disconnect : connect}
+              className={`btn btn-sm ${device.connected ? 'btn-error btn-outline' : 'btn-primary'} gap-2 rounded-full`}
+            >
+              {device.connected ? <BluetoothOff size={16} /> : <Bluetooth size={16} />}
+              {device.connected ? 'Disconnect' : 'Connect Device'}
+            </button>
+          </div>
         </div>
       </header>
 
